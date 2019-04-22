@@ -9,7 +9,13 @@ call vundle#begin()
   Plugin 'rust-lang/rust.vim'       " rust-lang features
   Plugin 'vim-syntastic/syntastic'  " syntax checking
   Plugin 'derekwyatt/vim-scala'
-  Plugin 'jalvesaq/Nvim-R'          "nvim-r - start with '\rf'
+  Plugin 'jalvesaq/Nvim-R'          " nvim-r - start with '\rf'
+  Plugin 'tomlion/vim-solidity'     " solidity syntax highlight
+  Plugin 'leafgarland/typescript-vim' " typescript syntax highlighting
+  Plugin 'scrooloose/nerdtree'
+
+
+
 call vundle#end()            
 filetype plugin indent on 
 
