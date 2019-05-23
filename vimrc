@@ -13,6 +13,7 @@ call vundle#begin()
   Plugin 'tomlion/vim-solidity'     " solidity syntax highlight
   Plugin 'leafgarland/typescript-vim' " typescript syntax highlighting
   Plugin 'scrooloose/nerdtree'
+  Plugin 'Xuyuanp/nerdtree-git-plugin' " glit plugin for nerd tree
 
 
 
@@ -54,3 +55,36 @@ syntax on
 " Key mappings
 map! jj <ESC>
 let maplocalleader = '\'
+
+
+" Split screen remapping
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+" Functions
+function! CleverTab()
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      return "\<Tab>"
+   else
+      return "\<C-N>"
+   endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+
+
