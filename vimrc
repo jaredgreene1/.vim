@@ -49,6 +49,7 @@ set smarttab
 set showmatch 
 set smartindent
 set tabstop=2
+set cursorline
 syntax on
 
 
