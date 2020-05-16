@@ -2,47 +2,45 @@ set nocompatible
 
 set rtp^=~/.vim/bundle/Vundle.vim " Add Vundle to runtimepath
 
+
 filetype off
 call vundle#begin()
   Plugin 'VundleVim/Vundle.vim'     " vundle setup
   Plugin 'tpope/vim-fugitive'       " git tools
-  Plugin 'rust-lang/rust.vim'       " rust-lang features
-  Plugin 'vim-syntastic/syntastic'  " syntax checking
-  Plugin 'derekwyatt/vim-scala'
-  Plugin 'jalvesaq/Nvim-R'          " nvim-r - start with '\rf'
-  Plugin 'tomlion/vim-solidity'     " solidity syntax highlight
-  Plugin 'leafgarland/typescript-vim' " typescript syntax highlighting
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'Xuyuanp/nerdtree-git-plugin' " glit plugin for nerd tree
-
-
-
+  Plugin 'tmhedberg/SimpylFold'
+  Plugin 'tomasiser/vim-code-dark'
+  " Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+  Plugin 'google/vim-jsonnet'
+  Plugin 'ctrlp'
 call vundle#end()            
+
+" CtrlP File Finder
+set rtp^=~/.vim/bundle/ctrlp.vim " Vim file finder
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
+let g:ctrlp_working_path_mode = 'r' " Look for the closest ancestor w/ .git
+
+
+
+let python_highlight_all=1
+syntax on
+
+
+set foldmethod=indent
+set foldlevel=99
+
+colorscheme codedark
+
 filetype plugin indent on 
-
-let g:syntastic_python_checkers = ['pylint'] 
-let g:rustfmt_autosave=1        " autofmt rust code on write
-
-
-" [Sytastic setting]
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_r_lintr_checker = 1
-
 
 " [General vim rules]
 set autoindent
-set colorcolumn=75
+set colorcolumn=80
 set expandtab
 set hlsearch
 set nowrap
-set number
+set relativenumber
 set shiftwidth=2
 set softtabstop=2 
 set smarttab
@@ -55,7 +53,9 @@ syntax on
 
 " Key mappings
 map! jj <ESC>
+nnoremap <space> za 
 let maplocalleader = '\'
+nnoremap <esc> :noh<return><esc>
 
 
 " Split screen remapping
@@ -74,6 +74,10 @@ function! CleverTab()
    endif
 endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
+
+function! FormatJSON()
+:%!python -m json.tool
+endfunction
 
 
 " Get off my lawn
